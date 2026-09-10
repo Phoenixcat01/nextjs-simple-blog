@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import ThemeSwitcher from './ThemeSwitcher';
  
 export default function Navbar() {
   return (
@@ -14,6 +15,7 @@ export default function Navbar() {
           <Link href="/blog" className="hover:text-zinc-600 dark:hover:text-zinc-300">
             Blog
           </Link>
+          <ThemeSwitcher/>
         </div>
       </div>
     </nav>
