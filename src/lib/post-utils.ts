@@ -37,3 +37,17 @@ export function getAllPosts() {
     }
   });
 }
+
+export function getPostBySlug(slug: string) {
+  const fullPath = path.join(postsDirectory, `${slug}.mdx`);
+  const fileContents = fs.readFileSync(fullPath, "utf8");
+ 
+  // Menggunakan gray-matter untuk memisahkan frontmatter dan konten
+  const { data, content } = matter(fileContents);
+ 
+  return {
+    slug,
+    frontmatter: data as { title: string; date: string; description: string },
+    content,
+  };
+}
