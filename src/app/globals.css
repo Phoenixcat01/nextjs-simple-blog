@@ -1,1 +1,20 @@
 @import "tailwindcss";
+
+/* Style untuk rehype-pretty-code */
+pre {
+  /* Memberi padding dan border-radius pada container kode */
+  @apply p-4 rounded-lg;
+}
+ 
+.highlighted {
+  /* Memberi warna latar pada baris yang di-highlight */
+  @apply bg-zinc-200/50 dark:bg-zinc-800/50;
+  display: block;
+  margin-inline: -1rem;
+  padding-inline: 1rem;
+}
+ 
+.word-highlighted {
+    /* Memberi style pada kata yang di-highlight */
+    @apply bg-zinc-300 dark:bg-zinc-700 p-1 rounded-md;
+}
