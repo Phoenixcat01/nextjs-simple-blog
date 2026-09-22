@@ -1,7 +1,35 @@
 // src/app/blog/[slug]/page.tsx
 import { getAllPosts, getPostBySlug } from "@/lib/post-utils";
 import { MDXRemote } from "next-mdx-remote/rsc";
+import rehypePrettyCode from "rehype-pretty-code";
+import type { Options } from "rehype-pretty-code";
  
+// Opsi untuk rehype-pretty-code
+const options: Options = {
+  theme: "one-dark-pro", // Atau tema lain dari shiki, misal: 'github-dark'
+  onVisitLine(node) {
+    // Mencegah baris kosong tanpa `class` agar tidak error
+    if (node.children.length === 0) {
+      node.children = [{ type: "text", value: " " }];
+    }
+  },
+  onVisitHighlightedLine(node) {
+    if (!node.properties.className) {
+      node.properties.className = [];
+    }
+    // Memberi style pada baris yang di-highlight
+    node.properties.className.push("highlighted");
+  },
+  onVisitHighlightedChars(node) {
+    if (!node.properties.className) {
+      node.properties.className = [];
+    }
+    (node.properties.className as string[]).push("word-highlighted");
+    // Memberi style pada kata yang di-highlight
+    // node.properties.className = ["word-highlighted"];
+  },
+};
+
 // Props yang diterima halaman ini adalah `params`, yang berisi `slug`
 type BlogPostPageProps = {
   params: Promise<{ slug: string }>;
@@ -31,7 +59,14 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
         })}
       </p>
 
-      <MDXRemote source={content} />
+      <MDXRemote
+        source={content}
+        options={{
+          mdxOptions: {
+            rehypePlugins: [[rehypePrettyCode, options]],
+          },
+        }}
+      />
     </article>
   );
 }
