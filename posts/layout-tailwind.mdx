@@ -1,0 +1,33 @@
+---
+title: "Menguasai Layout Modern dengan Flexbox dan Grid di Tailwind CSS"
+description: "Panduan praktis membangun tata letak web responsif menggunakan utilitas Flexbox dan Grid bawaan Tailwind."
+date: "2026-06-22"
+author: "Developer"
+tags: ["tailwind", "css", "flexbox", "grid"]
+---
+
+# Menguasai Layout Modern dengan Flexbox dan Grid di Tailwind CSS
+
+Membuat tata letak (*layout*) halaman web kini jauh lebih cepat berkat utilitas kelas dari Tailwind CSS. Kita tidak perlu lagi menulis file CSS terpisah untuk mengatur posisi elemen secara manual.
+
+## 1. Menggunakan Flexbox (`flex`)
+Flexbox sangat cocok untuk menyusun elemen secara sebaris (*row*) atau bertumpuk dengan pengatur jarak yang fleksibel.
+
+```html
+<div class="flex items-center justify-between p-4 bg-white dark:bg-zinc-900 rounded-lg shadow-md border border-zinc-200 dark:border-zinc-800">
+  <span class="font-bold text-lg text-zinc-900 dark:text-white">MyDevBlog</span>
+  <div class="flex items-center gap-4">
+    <a href="#" class="text-zinc-600 dark:text-zinc-400 hover:text-blue-500">Beranda</a>
+    <a href="#" class="text-zinc-600 dark:text-zinc-400 hover:text-blue-500">Artikel</a>
+  </div>
+</div>```
+
+
+## 2. Menggunakan CSS Grid (grid)
+Untuk struktur kolom yang kompleks dan responsif, Grid adalah pilihan terbaik tanpa perlu repot mengatur media query manual.
+
+```<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+  <div class="p-6 bg-zinc-100 dark:bg-zinc-800 rounded-xl">Kolom Artikel 1</div>
+  <div class="p-6 bg-zinc-100 dark:bg-zinc-800 rounded-xl">Kolom Artikel 2</div>
+  <div class="p-6 bg-zinc-100 dark:bg-zinc-800 rounded-xl">Kolom Artikel 3</div>
+</div>
